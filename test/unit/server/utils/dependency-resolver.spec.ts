@@ -249,7 +249,7 @@ describe('dependency-resolver', () => {
     })
 
     it('resolves npm aliases against the aliased package', async () => {
-      mockFetchNpmPackage.mockImplementation(async (name: string) => {
+      mockAbbreviatedPackument.mockImplementation(async (name: string) => {
         if (name === 'root')
           return makePackument('root', [
             {
@@ -276,8 +276,8 @@ describe('dependency-resolver', () => {
         'root@1.0.0',
       ])
       expect(result.get('fsevents-fork@2.0.0')).toMatchObject({ optional: true })
-      expect(mockFetchNpmPackage).not.toHaveBeenCalledWith('vite')
-      expect(mockFetchNpmPackage).not.toHaveBeenCalledWith('fsevents')
+      expect(mockAbbreviatedPackument).not.toHaveBeenCalledWith('vite')
+      expect(mockAbbreviatedPackument).not.toHaveBeenCalledWith('fsevents')
     })
 
     it('resolves transitive dependencies (A → B → C)', async () => {
